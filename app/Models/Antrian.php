@@ -9,4 +9,8 @@ class Antrian extends Model
 {
     /** @use HasFactory<\Database\Factories\AntrianFactory> */
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'nomor_antrian',
+    ];
 }

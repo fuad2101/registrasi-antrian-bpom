@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Antrian;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreAntrianRequest;
 use App\Http\Requests\UpdateAntrianRequest;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
 
 
 class AntrianController extends Controller
@@ -15,26 +17,35 @@ class AntrianController extends Controller
      */
     public function index()
     {
-
+        return view('antrian.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $today = now()->format('Y-m-d');
         $last = Antrian::whereDate('created_at', $today)->latest()->first();
         $nextNumber = $last ? intval(substr($last->nomor_antrian, -3)) + 1 : 1;
         $nomor = 'A' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+        $status = $request->input('status', 'waiting');
 
         $antrian = Antrian::create([
-            'user_id' => auth()->id(),
-            'nomor_antrian' => $nomor,
+            'user_id' => Auth::user()->id,
+            'status' => $status,
+            // 'nomor_antrian' => $nomor,
         ]);
 
-        $user = auth()->user();
-        $user->notify(new AntrianBaru($antrian));
+        return view('antrian.pdf.antrian', [
+            'antrian' => $nomor,
+            // 'nomor' => $nomor,
+        ]);
+
+        // return redirect()->route('antrian.post')->with('success', 'Antrian berhasil diambil. Nomor Antrian: ' . $nomor);
+
+        $user = Auth::user();
+        // $user->notify(new AntrianBaru($antrian));
 
     }
 

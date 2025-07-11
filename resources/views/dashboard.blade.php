@@ -12,6 +12,9 @@
                     {{ __("You're logged in!") }}
                 </div>
             </div>
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <a href="{{ route('antrian.ambil') }}">Ambil Antrian</a>
+            </div>
         </div>
     </div>
 </x-app-layout>

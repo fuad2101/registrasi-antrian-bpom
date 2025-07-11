@@ -10,12 +10,13 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [AntrianController::class, 'index'])->name('dashboard');
-    Route::post('/antrian/ambil', [AntrianController::class, 'ambil'])->name('antrian.ambil');
+    // Route::get('/dashboard', [AntrianController::class, 'index'])->name('dashboard');
+    Route::get('/antrian/ambil', [AntrianController::class, 'index'])->name('antrian.ambil');
+    Route::post('/antrian/ambil', [AntrianController::class, 'create'])->name('antrian.post');
     Route::get('/antrian/{id}/download', [AntrianController::class, 'download'])->name('antrian.download');
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/admin/antrian', [AdminController::class, 'index'])->name('admin.antrian');
     Route::put('/admin/antrian/{id}', [AdminController::class, 'updateStatus'])->name('admin.antrian.update');
 });
