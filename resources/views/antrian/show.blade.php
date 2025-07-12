@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+<h2>Nomor Antrian</h2>
+
+<p>{{$antrian}}</p>
+<form action="{{ route('antrian.download') }}" method="get" >
+    @csrf
+    <button class="btn btn-primary" type="submit">Download</button>
+</form>
+{{-- <p>{{ $antrian->created_at->format('d-m-Y H:i') }}</p> --}}

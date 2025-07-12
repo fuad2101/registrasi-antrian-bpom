@@ -11,15 +11,15 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     // Route::get('/dashboard', [AntrianController::class, 'index'])->name('dashboard');
-    Route::get('/antrian/ambil', [AntrianController::class, 'index'])->name('antrian.ambil');
-    Route::post('/antrian/ambil', [AntrianController::class, 'create'])->name('antrian.post');
-    Route::get('/antrian/{id}/download', [AntrianController::class, 'download'])->name('antrian.download');
+    Route::get('/antrian/ambil', [AntrianController::class, 'create'])->name('antrian.ambil');
+    Route::post('/antrian/ambil', [AntrianController::class, 'store'])->name('antrian.post');
+    Route::get('/antrian/download', [AntrianController::class, 'download'])->name('antrian.download');
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/antrian', [AdminController::class, 'index'])->name('admin.antrian');
-    Route::put('/admin/antrian/{id}', [AdminController::class, 'updateStatus'])->name('admin.antrian.update');
-});
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/admin/antrian', [AdminController::class, 'index'])->name('admin.antrian');
+//     Route::put('/admin/antrian/{id}', [AdminController::class, 'updateStatus'])->name('admin.antrian.update');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');

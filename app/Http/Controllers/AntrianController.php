@@ -25,6 +25,15 @@ class AntrianController extends Controller
      */
     public function create(Request $request)
     {
+        return view('antrian.create');
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
         $today = now()->format('Y-m-d');
         $last = Antrian::whereDate('created_at', $today)->latest()->first();
         $nextNumber = $last ? intval(substr($last->nomor_antrian, -3)) + 1 : 1;
@@ -37,7 +46,7 @@ class AntrianController extends Controller
             // 'nomor_antrian' => $nomor,
         ]);
 
-        return view('antrian.pdf.antrian', [
+        return view('antrian.show', [
             'antrian' => $nomor,
             // 'nomor' => $nomor,
         ]);
@@ -46,15 +55,6 @@ class AntrianController extends Controller
 
         $user = Auth::user();
         // $user->notify(new AntrianBaru($antrian));
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreAntrianRequest $request)
-    {
-        //
     }
 
     /**
@@ -92,12 +92,12 @@ class AntrianController extends Controller
     /**
      * Print the antrian.
      */
-    public function download($id)
+    public function download()
     {
-
-    $antrian = Antrian::findOrFail($id);
-    $pdf = Pdf::loadView('pdf.antrian', compact('antrian'));
-    return $pdf->download('antrian-'.$antrian->nomor_antrian.'.pdf');
-
+        // $antrian = Antrian::findOrFail($id);
+        $pdf = Pdf::loadView('antrian.pdf.antrian');
+        // $pdf = Pdf::loadView('antrian.pdf.antrian', compact('antrian'));
+        return $pdf->download('antrian');
+        // return $pdf->download('antrian-'.$antrian->nomor_antrian.'.pdf');
     }
 }
