@@ -93,78 +93,24 @@
   <div class="row">
     <div class="col ml-5">
         <img src="{{asset('storage/images/maskot.png')}}" class="d-block w-75" alt="https://placehold.co/900x700">
-      {{-- <div id="sliderFoto" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="{{asset('storage/images/maskot.png')}}" class="ml-5 d-block w-75" alt="https://placehold.co/900x700">
-          </div>
-          <div class="carousel-item">
-            <img src="images\slideshow\1.png" class="d-block w-100 img-thumbnail" alt="https://placehold.co/900x700">
-            <!-- <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>Some representative placeholder content for the first slide.</p>
-            </div> -->
-          </div>
-          <div class="carousel-item">
-            <img src="images\slideshow\standar-layanan\1.png" class="d-block w-100 img-thumbnail" alt="https://placehold.co/900x700">
-          </div>
-          <div class="carousel-item">
-            <img src="images\slideshow\standar-layanan\3.png" class="d-block w-100 img-thumbnail" alt="https://placehold.co/900x700">
-          </div>
-          <div class="carousel-item">
-            <img src="images\slideshow\standar-layanan\4.png" class="d-block w-100 img-thumbnail" alt="https://placehold.co/900x700">
-          </div>
-          <div class="carousel-item">
-            <img src="images\slideshow\standar-layanan\5.png" class="d-block w-100 img-thumbnail" alt="https://placehold.co/900x700">
-          </div>
-          <div class="carousel-item">
-            <img src="images\slideshow\standar-layanan\6.png" class="d-block w-100 img-thumbnail" alt="https://placehold.co/900x700">
-          </div>
-          <div class="carousel-item">
-            <img src="images\slideshow\standar-layanan\7.png" class="d-block w-100 img-thumbnail" alt="https://placehold.co/900x700">
-          </div>
-          <div class="carousel-item">
-            <img src="images\slideshow\standar-layanan\8.png" class="d-block w-100 img-thumbnail" alt="https://placehold.co/900x700">
-          </div>
-          <div class="carousel-item">
-            <img src="images\slideshow\standar-layanan\9.png" class="d-block w-100 img-thumbnail" alt="https://placehold.co/900x700">
-          </div>
-          <div class="carousel-item">
-            <img src="images\slideshow\standar-layanan\10.png" class="d-block w-100 img-thumbnail" alt="https://placehold.co/900x700">
-          </div>
-          <div class="carousel-item">
-            <img src="images\slideshow\standar-layanan\11.png" class="d-block w-100 img-thumbnail" alt="https://placehold.co/900x700">
-          </div>
-          <div class="carousel-item">
-            <img src="images\slideshow\standar-layanan\12.png" class="d-block w-100 img-thumbnail" alt="https://placehold.co/900x700">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#sliderFoto" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#sliderFoto" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div> --}}
     </div>
     <div class="col mr-5">
       <div class="row d-flex flex-column justify-content-around">
         <!-- pricing table -->
         <div class="col-md-6 col-lg-12 mb-5 mb-lg-3 pt-4">
-          <div class="rounded text-center pricing-table table-1">
             <form action="" method="get">
                 <button type="submit" class="btn btn-lg btn-primary">Login</button>
             </form>
+          {{-- <div class="rounded text-center pricing-table table-1">
             <h4>Login</h4>
-          </div>
+          </div> --}}
         </div>
         <div class="col-md-6 col-lg-12 mb-5 mb-lg-3">
-          <div class="rounded text-center pricing-table table-2">
+            <a href="" class="btn btn-primary btn-lg" >Register</a>
+          {{-- <div class="rounded text-center pricing-table table-2">
             <h4>Register</h4>
             </p>
-          </div>
+          </div> --}}
         </div>
       </div>
     </div>
