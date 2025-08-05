@@ -98,15 +98,13 @@
       <div class="row d-flex flex-column justify-content-around">
         <!-- pricing table -->
         <div class="col-md-6 col-lg-12 mb-5 mb-lg-3 pt-4">
-            <form action="" method="get">
-                <button type="submit" class="btn btn-lg btn-primary">Login</button>
-            </form>
+            <a href="{{ route('login') }}" class="btn btn-primary btn-lg" >Login</a>
           {{-- <div class="rounded text-center pricing-table table-1">
             <h4>Login</h4>
           </div> --}}
         </div>
         <div class="col-md-6 col-lg-12 mb-5 mb-lg-3">
-            <a href="" class="btn btn-primary btn-lg" >Register</a>
+            <a href="{{ route('register') }}" class="btn btn-primary btn-lg" >Register</a>
           {{-- <div class="rounded text-center pricing-table table-2">
             <h4>Register</h4>
             </p>
