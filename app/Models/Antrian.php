@@ -13,4 +13,14 @@ class Antrian extends Model
         'user_id',
         'nomor_antrian',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function layanan()
+    {
+        return $this->belongsTo(Layanan::class, 'layanans_id', 'id');
+    }
 }

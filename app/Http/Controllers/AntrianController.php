@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreAntrianRequest;
 use App\Http\Requests\UpdateAntrianRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\EmailAntrian;
 
 
 class AntrianController extends Controller
@@ -43,15 +45,18 @@ class AntrianController extends Controller
         $antrian = Antrian::create([
             'user_id' => Auth::user()->id,
             'status' => $status,
-            // 'nomor_antrian' => $nomor,
+            'nomor_antrian' => $nomor,
         ]);
 
+        Mail::to($request->user())->send(new EmailAntrian($antrian));
+
         return view('antrian.show', [
-            'antrian' => $nomor,
-            // 'nomor' => $nomor,
+            'antrian' => $antrian,
         ]);
 
         // return redirect()->route('antrian.post')->with('success', 'Antrian berhasil diambil. Nomor Antrian: ' . $nomor);
+
+
 
         $user = Auth::user();
         // $user->notify(new AntrianBaru($antrian));

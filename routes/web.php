@@ -5,13 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AntrianController;
 use App\Http\Controllers\AdminController;
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 
 Route::middleware(['auth'])->group(function () {
     // Route::get('/dashboard', [AntrianController::class, 'index'])->name('dashboard');
-    Route::get('/antrian/ambil', [AntrianController::class, 'create'])->name('antrian.ambil');
+    Route::get('/', [AntrianController::class, 'create'])->name('antrian.ambil');
+    // Route::get('/antrian/ambil', [AntrianController::class, 'create'])->name('antrian.ambil');
     Route::post('/antrian/ambil', [AntrianController::class, 'store'])->name('antrian.post');
     Route::get('/antrian/download', [AntrianController::class, 'download'])->name('antrian.download');
 });
@@ -29,6 +30,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::get('/mailable', function () {
+    $antrian = App\Models\Antrian::first();
+
+    return new App\Mail\EmailAntrian($antrian);
 });
 
 require __DIR__.'/auth.php';
