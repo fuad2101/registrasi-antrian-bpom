@@ -6,22 +6,29 @@
         @csrf
 
         <!-- Email Address -->
-        <div>
+        {{-- <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        </div> --}}
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-wirekit::form style="max-width: 24rem;">
+                <x-wirekit::stack gap="md">
+                    <x-wirekit::input name="email" label="Email" placeholder="Your email address" />
+                    <x-wirekit::input name="password" type="password" label="Password" />
+                    <x-wirekit::button type="submit">Sign in</x-wirekit::button>
+                </x-wirekit::stack>
+            </x-wirekit::form>
+            {{-- <x-input-label for="password" :value="__('Password')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
-                            required autocomplete="current-password" />
+                            required autocomplete="current-password" /> --}}
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            {{-- <x-input-error :messages="$errors->get('password')" class="mt-2" /> --}}
         </div>
 
         <!-- Remember Me -->
@@ -39,9 +46,9 @@
                 </a>
             @endif
 
-            <x-primary-button class="ms-3">
+            {{-- <x-primary-button class="ms-3">
                 {{ __('Log in') }}
-            </x-primary-button>
+            </x-primary-button> --}}
         </div>
     </form>
 </x-guest-layout>

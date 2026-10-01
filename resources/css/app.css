@@ -1,3 +1,7 @@
-@tailwind base;
+@import 'tailwindcss';
+
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
+
+@source '../../vendor/pushery/wirekit/resources/views/**/*.blade.php';

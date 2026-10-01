@@ -48,6 +48,8 @@ class AntrianController extends Controller
             'nomor_antrian' => $nomor,
         ]);
 
+        // dd($antrian);
+
         Mail::to($request->user())->send(new EmailAntrian($antrian));
 
         return view('antrian.show', [
