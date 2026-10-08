@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminController;
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [AntrianController::class, 'create'])->name('antrian.ambil');
+    // Route::get('/', [AntrianController::class, 'create'])->name('antrian.ambil');
     Route::post('/antrian/ambil', [AntrianController::class, 'store'])->name('antrian.post');
     Route::get('/antrian/download', [AntrianController::class, 'download'])->name('antrian.download');
 
@@ -19,7 +19,15 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/dashboard', function () {
+Route::middleware(['auth', 'can:admin'])->group(function () {
+    Route::get('/queue-lists', [AdminController::class, 'index'])->name('queue-lists');
+    Route::get('/queue-lists/{antrian}', [AdminController::class, 'show'])->name('queue-lists.show');
+    Route::post('/queue-lists/{antrian}/update-status', [AdminController::class, 'updateStatus'])->name('queue-lists.update-status');
+
+    Route::livewire('queue-lists', 'pages::antrian.update')->name('queue-lists');
+});
+
+Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
