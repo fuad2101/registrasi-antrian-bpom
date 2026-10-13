@@ -11,8 +11,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/antrian/ambil', [AntrianController::class, 'store'])->name('antrian.post');
     Route::get('/antrian/download', [AntrianController::class, 'download'])->name('antrian.download');
 
-    Route::livewire('create', 'antrian.create')->name('antrian.create');
-    Route::livewire('update','antrian.update')->name('antrian.update');
+    Route::livewire('create', 'pages::antrian.create')->name('antrian.create');
+    Route::livewire('update','pages::antrian.update')->name('antrian.update');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
