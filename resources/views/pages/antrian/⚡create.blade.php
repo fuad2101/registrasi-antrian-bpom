@@ -14,7 +14,7 @@ new class extends Component
         // Handle form submission logic here
         // For example, you can validate the input and save it to the database
         $validated = $this->validate([
-            'email' => 'required|email',
+            'name' => 'required',
             'layanan_id' => 'required',
             'deskripsi' => 'required',
         ]);
@@ -38,7 +38,7 @@ new class extends Component
     <form wire:submit.prevent="submit">
         <x-wirekit::form style="max-width: 24rem;">
             <x-wirekit::stack gap="md">
-                <x-wirekit::input wire:model="email" name="email" label="Nama Lengkap" placeholder="Your email address" />
+                <x-wirekit::input wire:model="name" name="name" label="Nama Lengkap" placeholder="Your name" />
                 <x-wirekit::select
                     wire:model="layanan_id"
                     label="Jenis Layanan"
