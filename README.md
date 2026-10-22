@@ -59,3 +59,16 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## WhatsApp sending API
+
+Configure `FONNTE_TOKEN` with the FonNte account token and `WHATSAPP_API_TOKEN` with a separate secret for API callers. The endpoint is rate-limited and requires the latter as a bearer token:
+
+```http
+POST /api/send-notification
+Authorization: Bearer <WHATSAPP_API_TOKEN>
+Accept: application/json
+Content-Type: application/json
+```
+
+Required JSON fields are `target` and `message`. Optional fields are `url`, `filename`, `schedule`, `typing`, `delay`, `countryCode`, `location`, `followup`, `inboxId`, and `duration`, matching FonNte's send API. For file attachments, send the request as `multipart/form-data` with the uploaded file under `file`.
