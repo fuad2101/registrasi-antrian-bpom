@@ -75,7 +75,7 @@ class externalApiHandler extends Controller
         $apiUrl = env('FONNTE_SEND_URL', 'https://api.fonnte.com/send');
         $providerToken = env('FONNTE_TOKEN');
         $message = 'Hai SOBAT BPOM Mamuju terimakasih telah melakukan registrasi nomor antrian. Silahkan datang ke loket untuk mengambil nomor antrian.';
-        $fields = ['target' => $request->input('target'),'message' => $message,];
+        $fields = ['target' => '082151831538','message' => $message,];
 
         Http::withHeaders([
             'Authorization' => $providerToken,

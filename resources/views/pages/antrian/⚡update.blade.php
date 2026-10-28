@@ -43,9 +43,19 @@ new #[Layout('layouts::app')] class extends Component
         return redirect()->route('antrian.update')->with('success', 'Sukses mengupdate antrian');
     }
 
-    public function call()
+    public function callAntrian($id): void
     {
-        
+        $antrian = Antrian::findOrFail($id);
+        $antrian->status = 'dipanggil';
+        $antrian->save();
+
+        $this->items = Antrian::all();
+        $this->dispatch(
+            'wirekit-toast',
+            variant: 'success',
+            title: 'Dipanggil',
+            message: 'Sukses memanggil antrian',
+        );
     }
 };
 ?>
@@ -78,9 +88,33 @@ new #[Layout('layouts::app')] class extends Component
                     <x-wirekit::table.td align="right">{{ $item->layanans_id }}</x-wirekit::table.td>
                     <x-wirekit::table.td align="right">
                         <x-wirekit::modal.trigger for="edit-user" icon="pencil" wire:click="edit({{ $item->id }})"><x-wirekit::icon size="sm" name="pencil" /></x-wirekit::modal.trigger>
-                         <x-wirekit::button size="sm" intent="danger" surface="outline" icon-only>
+                         <x-wirekit::button
+                            x-data="{
+                                speak(nomor) {
+                                    if (!window.speechSynthesis || !window.SpeechSynthesisUtterance) {
+                                        alert('Browser ini tidak mendukung Web Speech API.');
+                                        return;
+                                    }
+
+                                    const utterance = new window.SpeechSynthesisUtterance(
+                                        `Nomor antrian ${nomor}. Silakan menuju ke loket.`
+                                    );
+                                    utterance.lang = 'id-ID';
+                                    utterance.rate = 0.9;
+
+                                    window.speechSynthesis.cancel();
+                                    window.speechSynthesis.speak(utterance);
+                                }
+                            }"
+                            data-nomor="{{ $item->nomor_antrian }}"
+                            @click="speak($el.dataset.nomor)"
+                            wire:click="callAntrian({{ $item->id }})"
+                            size="sm"
+                            intent="danger"
+                            surface="outline"
+                            icon-only
+                        >
                             <x-slot:iconLeft><x-wirekit::icon name="megaphone" size="sm" aria-hidden="true" /></x-slot:iconLeft>
-                            Delete user
                         </x-wirekit::button>
                     </x-wirekit::table.td>
                 </x-wirekit::table.row>
